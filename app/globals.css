@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #0D1117;
+  color: #F7F5F2;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #161B22;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3A7A8E;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4A90A4;
+}
+
+/* Glow effects */
+.glow-text {
+  text-shadow: 0 0 40px rgba(212, 168, 83, 0.3);
+}
+
+.glow-box {
+  box-shadow: 0 0 60px rgba(212, 168, 83, 0.15);
+}
+
+.glow-line {
+  box-shadow: 0 0 20px rgba(212, 168, 83, 0.5), 0 0 40px rgba(212, 168, 83, 0.3);
+}
+
+/* Noise texture overlay */
+.noise-overlay {
+  position: relative;
+}
+
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Gradient borders */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(#161B22, #161B22) padding-box,
+              linear-gradient(135deg, #D4A853 0%, #4A90A4 100%) border-box;
+  border: 1px solid transparent;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply inline-flex items-center justify-center px-8 py-4 bg-amber-glow text-midnight font-semibold rounded-lg transition-all duration-300;
+  @apply hover:bg-amber-bright hover:shadow-lg hover:shadow-amber-glow/30 hover:-translate-y-0.5;
+  @apply active:translate-y-0;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center px-8 py-4 border border-cream/20 text-cream font-medium rounded-lg transition-all duration-300;
+  @apply hover:border-amber-glow/50 hover:text-amber-glow hover:bg-amber-glow/5;
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center px-6 py-3 border border-teal-accent text-teal-accent font-medium rounded-lg transition-all duration-300;
+  @apply hover:bg-teal-accent hover:text-midnight;
+}
+
+/* Card styles */
+.card {
+  @apply bg-charcoal/50 backdrop-blur-sm rounded-2xl p-6 border border-white/5;
+  @apply transition-all duration-300;
+  @apply hover:border-amber-glow/20 hover:shadow-lg hover:shadow-amber-glow/5;
+}
+
+.card-glow {
+  @apply relative overflow-hidden;
+}
+
+.card-glow::before {
+  content: '';
+  @apply absolute -top-1/2 -left-1/2 w-full h-full;
+  background: radial-gradient(circle, rgba(212, 168, 83, 0.1) 0%, transparent 50%);
+  @apply transition-transform duration-500;
+  transform: translate(-50%, -50%);
+}
+
+.card-glow:hover::before {
+  transform: translate(0%, 0%);
+}
+
+/* Section styles */
+.section-dark {
+  @apply bg-midnight relative;
+}
+
+.section-charcoal {
+  @apply bg-charcoal relative;
+}
+
+/* Animation delays for staggered reveals */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+
+/* Form styles */
+input, textarea, select {
+  @apply w-full bg-slate-dark border border-white/10 rounded-lg px-4 py-3 text-cream;
+  @apply placeholder:text-cream/40;
+  @apply focus:outline-none focus:border-amber-glow/50 focus:ring-1 focus:ring-amber-glow/30;
+  @apply transition-all duration-300;
+}
+
+input[type="file"] {
+  @apply py-2;
+}
+
+label {
+  @apply block text-sm font-medium text-cream/80 mb-2;
+}
+
+/* Hero background animation */
+@keyframes aurora {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(3deg);
+  }
+}
+
+.aurora-bg {
+  animation: aurora 20s ease-in-out infinite;
+}
+
+/* Roofline light animation */
+@keyframes roofline-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 245, 230, 0.5), 0 0 40px rgba(255, 245, 230, 0.3), 0 0 60px rgba(255, 245, 230, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 245, 230, 0.7), 0 0 60px rgba(255, 245, 230, 0.4), 0 0 90px rgba(255, 245, 230, 0.2);
+  }
+}
+
+.roofline-glow {
+  animation: roofline-glow 3s ease-in-out infinite;
+}
